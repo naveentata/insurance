@@ -1,0 +1,155 @@
+<html>
+    <head>
+         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    </head>
+   <body>
+       
+        <div class ='row'>
+            <div style='margin-left:100px;'>
+            <img src = 'http://www.itsimplified-ms.com/posts/photos/databases.png'>
+            </div>
+            <div style='padding-top: 20px; padding-left:20px;'><h3>
+             A Slick CRUD Application Built Using Python With Flask and SQLite3 to Teach Simple mySQL Queries
+            </h3></div>
+        </div> <!--ends intro -->
+
+        <br>
+       <div class ='row'>
+
+        {% block content %}
+        {% if 'query_edit' in request.url %}
+        <div style='margin-left: 100px; width: 45%;'>
+        <div class="alert alert-info" role="alert">
+         <strong>Your turn!</strong> Edit your selected data line here ...
+        </div>
+
+
+
+        {% for eresult in eresults %}
+
+        <form action = "edit" method = "POST">
+         <p>Policy_id: <input class="form-control" type = "text" name = "Policy_id" style='width: 100%;' value='{{eresult["Policy_id"]}}'/></p>
+         <p>DateofPurchase: <input class="form-control" type = "text" name = "DateofPurchase" style='width: 100%;' value='{{eresult["DateofPurchase"]}}' /></p>
+         <p>Customer_id: <input class="form-control" type = "text" name = "Customer_id" style='width: 100%;' value='{{eresult["Customer_id"]}}' /></p>
+         <p>Fuel: <input class="form-control" type = "text" name = "Fuel" style='width: 100%;' value='{{eresult["Fuel"]}}' /></p>
+         <p>VEHICLE_SEGMENT: <input class="form-control" type ="text" name = "VEHICLE_SEGMENT" style='width: 100%;' value='{{eresult["VEHICLE_SEGMENT"]}}' /></p>
+         <p>Premium: <input class="form-control" type ="text" name = "Premium" style='width: 100%;' value='{{eresult["Premium"]}}' /></p>
+         <p>bodilyinjuryliability: <input class="form-control" type = "text" name = "bodilyinjuryliability" style='width: 100%;' value='{{eresult["bodilyinjuryliability"]}}' /></p>
+         <p>personalinjuryprotection: <input class="form-control" type ="text" name = "personalinjuryprotection" style='width: 100%;' value='{{eresult["personalinjuryprotection"]}}' /></p>
+         <p>propertydamageliability: <input class="form-control" type ="text" name = "propertydamageliability" style='width: 100%;' value='{{eresult["propertydamageliability"]}}' /></p>
+         <p>collision: <input class="form-control" type = "text" name = "collision" style='width: 100%;' value='{{eresult["collision"]}}' /></p>
+         <p>comprehensive: <input class="form-control" type ="text" name = "comprehensive" style='width: 100%;' value='{{eresult["comprehensive"]}}' /></p>
+         <p>Customer_Gender: <input class="form-control" type ="text" name = "Customer_Gender" style='width: 100%;' value='{{eresult["Customer_Gender"]}}' /></p>
+         <p>Customer_Incomegroup: <input class="form-control" type = "text" name = "Customer_Incomegroup" style='width: 100%;' value='{{eresult["Customer_Incomegroup"]}}' /></p>
+         <p>Customer_Region: <input class="form-control" type ="text" name = "Customer_Region" style='width: 100%;' value='{{eresult["Customer_Region"]}}' /></p>
+         <p>Customer_Marital_status: <input class="form-control" type ="text" name = "Customer_Marital_status" style='width: 100%;' value='{{eresult["Customer_Marital_status"]}}' /></p>
+         <input type ="hidden" name = "old_Policy_id" value='{{eresult["Policy_id"]}}' />
+
+
+         {% endfor %}
+
+         <br>
+
+         <p><input class="btn-primary" type = "submit" value = "Update Data" /></p>
+        </form>
+        </div>
+
+        {% else %}
+        <div style='margin-left: 100px; width: 45%;'>
+        <div class="alert alert-info" role="alert">
+        <strong>Your turn!</strong> Insert your new data line with this form ...
+        </div>
+        
+        <form action = "insert" method = "POST">
+         <p>Policy_id: <input class="form-control" type = "text" name = "Policy_id" style='width: 100%;'/></p>
+         <p>DateofPurchase: <input class="form-control" type = "text" name = "DateofPurchase" style='width: 100%;'  /></p>
+         <p>Customer_id: <input class="form-control" type = "text" name = "Customer_id" style='width: 100%;' /></p>
+         <p>Fuel: <input class="form-control" type = "text" name = "Fuel" style='width: 100%;'  /></p>
+         <p>VEHICLE_SEGMENT: <input class="form-control" type ="text" name = "VEHICLE_SEGMENT" style='width: 100%;' /></p>
+         <p>Premium: <input class="form-control" type ="text" name = "Premium" style='width: 100%;'  /></p>
+         <p>bodilyinjuryliability: <input class="form-control" type = "text" name = "bodilyinjuryliability" style='width: 100%;'  /></p>
+         <p>personalinjuryprotection: <input class="form-control" type ="text" name = "personalinjuryprotection" style='width: 100%;'  /></p>
+         <p>propertydamageliability: <input class="form-control" type ="text" name = "propertydamageliability" style='width: 100%;'  /></p>
+         <p>collision: <input class="form-control" type = "text" name = "collision" style='width: 100%;' /></p>
+         <p>comprehensive: <input class="form-control" type ="text" name = "comprehensive" style='width: 100%;' /></p>
+         <p>Customer_Gender: <input class="form-control" type ="text" name = "Customer_Gender" style='width: 100%;'  /></p>
+         <p>Customer_Incomegroup: <input class="form-control" type = "text" name = "Customer_Incomegroup" style='width: 100%;'  /></p>
+         <p>Customer_Region: <input class="form-control" type ="text" name = "Customer_Region" style='width: 100%;'  /></p>
+         <p>Customer_Marital_status: <input class="form-control" type ="text" name = "Customer_Marital_status" style='width: 100%;'  /></p>
+         <br>
+
+         <p><input class="btn-primary" type = "submit" value = "Insert Data" /></p>
+        </form>
+        </div>
+
+
+        {% endif %}
+        {% endblock content %}
+
+        <div style='margin-left: 20px; width: 45%;'>
+        <div class="alert alert-warning" role="alert">
+         <strong>Awesome!</strong> Here is your mySQL code ...
+        </div>
+        {{msg}}
+        </div>
+
+        </div> <!-- ends row div -->
+
+      <br><br>
+
+        <div class="alert alert-success" role="alert" style='width: 90%; margin-left: 100px;'>
+        <strong>Check it out!</strong> Here is your data table below ...
+        </div>
+
+
+
+      <table class = 'table table-hover' style = 'margin-left: 100px; margin-right: 100px; width: 90%;'>
+         <thead>
+            <tr>
+            <th>Policy_id</th>
+            <th>DateofPurchase</th>
+            <th>Customer_id</th>
+            <th>Fuel</th>
+            <th>VEHICLE_SEGMENT</th>
+            <th>Premium</th>
+            <th>bodilyinjuryliability</th>
+            <th>personalinjuryprotection</th>
+            <th>propertydamageliability</th>
+            <th>collision</th>
+            <th>comprehensive</th>
+            <th>Customer_Gender</th>
+            <th>Customer_Incomegroup</th>
+            <th>Customer_Region</th>
+            <th>Customer_Marital_status</th>
+            </tr>
+         </thead>
+
+         {% for result in results %}
+            <tr>
+               <td>{{result["Policy_id"]}}</td>
+               <td>{{result["DateofPurchase"]}}</td>
+               <td>{{result["Customer_id"]}}</td>
+               <td>{{result['Fuel']}}</td>
+               <td>{{result['VEHICLE_SEGMENT']}}</td>
+               <td>{{result['Premium']}}</td>
+               <td>{{result["bodilyinjuryliability"]}}</td>
+               <td>{{result["personalinjuryprotection"]}}</td>
+               <td>{{result["propertydamageliability"]}}</td>
+               <td>{{result['collision']}}</td>
+               <td>{{result['comprehensive']}}</td>
+               <td>{{result['Customer_Gender']}}</td>
+               <td>{{result['Customer_Incomegroup']}}</td>
+               <td>{{result['Customer_Region']}}</td>
+               <td>{{result['Customer_Marital_status']}}</td>
+               <td align="center"><a href = "{{ url_for('sql_editlink', ePolicy_id=result['Policy_id'] }}"><i class="fas fa-edit"></a></td>
+               <td align="center"><a href = "{{ url_for('sql_datadelete', Policy_id=result['Policy_id'] }}"><i class="fas fa-trash-alt"></a></td>
+            </tr>
+         {% endfor %}
+      </table>
+
+    </body>
+</html>
