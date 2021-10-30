@@ -8,7 +8,7 @@ data_table = pd.read_csv('data.csv', header=None, names=headers, converters={'zi
 
 
 # Create a database
-conn = sqlite3.connect('abc.db')
+conn = sqlite3.connect('abc.db',check_same_thread=False)
 
 # Add the data to our database
 

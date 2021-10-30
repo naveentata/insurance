@@ -145,8 +145,8 @@
                <td>{{result['Customer_Incomegroup']}}</td>
                <td>{{result['Customer_Region']}}</td>
                <td>{{result['Customer_Marital_status']}}</td>
-               <td align="center"><a href = "{{ url_for('sql_editlink', ePolicy_id=result['Policy_id'] }}"><i class="fas fa-edit"></a></td>
-               <td align="center"><a href = "{{ url_for('sql_datadelete', Policy_id=result['Policy_id'] }}"><i class="fas fa-trash-alt"></a></td>
+               <td align="center"><a href = "{{ url_for('sql_editlink', ePolicy_id=result['Policy_id']) }}"><i class="fas fa-edit"></a></td>
+               <td align="center"><a href = "{{ url_for('sql_datadelete', Policy_id=result['Policy_id']) }}"><i class="fas fa-trash-alt"></a></td>
             </tr>
          {% endfor %}
       </table>
