@@ -35,9 +35,9 @@ def sql_datadelete():
     if request.method == 'GET':
         Policy_id = request.args.get('Policy_id')
 
-        sql_delete(''' DELETE FROM data where Policy_id = ''', (Policy_id) )
+        sql_delete(''' DELETE FROM data where Policy_id = ?''', (Policy_id,) )
     results = sql_query(''' SELECT * FROM data''')
-    msg = 'DELETE FROM data WHERE first_name = ' + fname + ' and last_name = ' + lname
+    msg = 'DELETE FROM data WHERE first_name = ' 
     return render_template('sqldatabase.html', results=results, msg=msg)
 
 @app.route('/query_edit',methods = ['POST', 'GET']) #this is when user clicks edit link
@@ -45,7 +45,7 @@ def sql_editlink():
     from functions.sqlquery import sql_query, sql_query2
     if request.method == 'GET':
         ePolicy_id = request.args.get('ePolicy_id')
-        eresults = sql_query2(''' SELECT * FROM data where Policy_id = ?''', (ePolicy_id))
+        eresults = sql_query2(''' SELECT * FROM data where Policy_id = ?''',(ePolicy_id,))
     results = sql_query(''' SELECT * FROM data''')
     return render_template('sqldatabase.html', eresults=eresults, results=results)
 
@@ -68,7 +68,7 @@ def sql_dataedit():
         Customer_Incomegroup = request.form['Customer_Incomegroup']
         Customer_Region = request.form['Customer_Region']
         Customer_Marital_status = request.form['Customer_Marital_status']
-        sql_edit_insert(''' UPDATE data set Policy_id=?,DateofPurchase=?,Customer_id=?,Fuel=?,VEHICLE_SEGMENT=?,Premium=?,bodilyinjuryliability=?,personalinjuryprotection=?,propertydamageliability=?,collision=?,comprehensive=?,Customer_Gender=?,Customer_Incomegroup=?,Customer_Region=?,Customer_Marital_status=? WHERE Policy_id=? ''', (Policy_id,DateofPurchase,Customer_id,Fuel,VEHICLE_SEGMENT,Premium,bodilyinjuryliability,personalinjuryprotection,propertydamageliability,collision,comprehensive,Customer_Gender,Customer_Incomegroup,Customer_Region,Customer_Marital_status))
+        sql_edit_insert(''' UPDATE data set Policy_id=?,DateofPurchase=?,Customer_id=?,Fuel=?,VEHICLE_SEGMENT=?,Premium=?,bodilyinjuryliability=?,personalinjuryprotection=?,propertydamageliability=?,collision=?,comprehensive=?,Customer_Gender=?,Customer_Incomegroup=?,Customer_Region=?,Customer_Marital_status=? WHERE Policy_id=? ''', (Policy_id,DateofPurchase,Customer_id,Fuel,VEHICLE_SEGMENT,Premium,bodilyinjuryliability,personalinjuryprotection,propertydamageliability,collision,comprehensive,Customer_Gender,Customer_Incomegroup,Customer_Region,Customer_Marital_status,Policy_id,))
     results = sql_query(''' SELECT * FROM data''')
     msg = 'UPDATE data set'
     return render_template('sqldatabase.html', results=results, msg=msg)
