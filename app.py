@@ -54,7 +54,7 @@ def sql_dataedit():
     from functions.sqlquery import sql_edit_insert, sql_query
     if request.method == 'POST':
         Policy_id = request.form['Policy_id']
-        DateofPurchase = request.form['DateofPurchase']
+        # DateofPurchase = request.form['DateofPurchase']
         Customer_id = request.form['Customer_id']
         Fuel = request.form['Fuel']
         VEHICLE_SEGMENT = request.form['VEHICLE_SEGMENT']
@@ -68,7 +68,7 @@ def sql_dataedit():
         Customer_Incomegroup = request.form['Customer_Incomegroup']
         Customer_Region = request.form['Customer_Region']
         Customer_Marital_status = request.form['Customer_Marital_status']
-        sql_edit_insert(''' UPDATE data set Policy_id=?,DateofPurchase=?,Customer_id=?,Fuel=?,VEHICLE_SEGMENT=?,Premium=?,bodilyinjuryliability=?,personalinjuryprotection=?,propertydamageliability=?,collision=?,comprehensive=?,Customer_Gender=?,Customer_Incomegroup=?,Customer_Region=?,Customer_Marital_status=? WHERE Policy_id=? ''', (Policy_id,DateofPurchase,Customer_id,Fuel,VEHICLE_SEGMENT,Premium,bodilyinjuryliability,personalinjuryprotection,propertydamageliability,collision,comprehensive,Customer_Gender,Customer_Incomegroup,Customer_Region,Customer_Marital_status,Policy_id,))
+        sql_edit_insert(''' UPDATE data set Policy_id=?,Customer_id=?,Fuel=?,VEHICLE_SEGMENT=?,Premium=?,bodilyinjuryliability=?,personalinjuryprotection=?,propertydamageliability=?,collision=?,comprehensive=?,Customer_Gender=?,Customer_Incomegroup=?,Customer_Region=?,Customer_Marital_status=? WHERE Policy_id=? ''', (Policy_id,Customer_id,Fuel,VEHICLE_SEGMENT,Premium,bodilyinjuryliability,personalinjuryprotection,propertydamageliability,collision,comprehensive,Customer_Gender,Customer_Incomegroup,Customer_Region,Customer_Marital_status,Policy_id,))
     results = sql_query(''' SELECT * FROM data''')
     msg = 'UPDATE data set'
     return render_template('sqldatabase.html', results=results, msg=msg)

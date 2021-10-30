@@ -33,11 +33,11 @@
 
         <form action = "edit" method = "POST">
          <p>Policy_id: <input class="form-control" type = "text" name = "Policy_id" style='width: 100%;' value='{{eresult["Policy_id"]}}'/></p>
-         <p>DateofPurchase: <input class="form-control" type = "text" name = "DateofPurchase" style='width: 100%;' value='{{eresult["DateofPurchase"]}}' /></p>
+         <!-- <p>DateofPurchase: <input class="form-control" type = "text" name = "DateofPurchase" style='width: 100%;' value='{{eresult["DateofPurchase"]}}' /></p> -->
          <p>Customer_id: <input class="form-control" type = "text" name = "Customer_id" style='width: 100%;' value='{{eresult["Customer_id"]}}' /></p>
          <p>Fuel: <input class="form-control" type = "text" name = "Fuel" style='width: 100%;' value='{{eresult["Fuel"]}}' /></p>
          <p>VEHICLE_SEGMENT: <input class="form-control" type ="text" name = "VEHICLE_SEGMENT" style='width: 100%;' value='{{eresult["VEHICLE_SEGMENT"]}}' /></p>
-         <p>Premium: <input class="form-control" type ="text" name = "Premium" style='width: 100%;' value='{{eresult["Premium"]}}' /></p>
+         <p>Premium: <input class="form-control" type ="number" max="1000000" name = "Premium" style='width: 100%;' value='{{eresult["Premium"]}}' /></p>
          <p>bodilyinjuryliability: <input class="form-control" type = "text" name = "bodilyinjuryliability" style='width: 100%;' value='{{eresult["bodilyinjuryliability"]}}' /></p>
          <p>personalinjuryprotection: <input class="form-control" type ="text" name = "personalinjuryprotection" style='width: 100%;' value='{{eresult["personalinjuryprotection"]}}' /></p>
          <p>propertydamageliability: <input class="form-control" type ="text" name = "propertydamageliability" style='width: 100%;' value='{{eresult["propertydamageliability"]}}' /></p>
@@ -70,7 +70,7 @@
          <p>Customer_id: <input class="form-control" type = "text" name = "Customer_id" style='width: 100%;' /></p>
          <p>Fuel: <input class="form-control" type = "text" name = "Fuel" style='width: 100%;'  /></p>
          <p>VEHICLE_SEGMENT: <input class="form-control" type ="text" name = "VEHICLE_SEGMENT" style='width: 100%;' /></p>
-         <p>Premium: <input class="form-control" type ="text" name = "Premium" style='width: 100%;'  /></p>
+         <p>Premium: <input class="form-control" type ="number" max="100" name = "Premium" style='width: 100%;'  /></p>
          <p>bodilyinjuryliability: <input class="form-control" type = "text" name = "bodilyinjuryliability" style='width: 100%;'  /></p>
          <p>personalinjuryprotection: <input class="form-control" type ="text" name = "personalinjuryprotection" style='width: 100%;'  /></p>
          <p>propertydamageliability: <input class="form-control" type ="text" name = "propertydamageliability" style='width: 100%;'  /></p>
