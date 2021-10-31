@@ -1,0 +1,59 @@
+<html>
+    <head>
+         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    </head>
+   <body>
+    
+<form action="#" method="POST">
+    <input class="form-control" type = "text" name = "search" style="width:250px;margin-left: 100px;"/> 
+</form>
+      <table class = 'table table-hover' style = 'margin-left: 100px; margin-right: 100px; width: 90%;'>
+         <thead>
+            <tr>
+            <th>Policy_id</th>
+            <th>DateofPurchase</th>
+            <th>Customer_id</th>
+            <th>Fuel</th>
+            <th>VEHICLE_SEGMENT</th>
+            <th>Premium</th>
+            <th>bodilyinjuryliability</th>
+            <th>personalinjuryprotection</th>
+            <th>propertydamageliability</th>
+            <th>collision</th>
+            <th>comprehensive</th>
+            <th>Customer_Gender</th>
+            <th>Customer_Incomegroup</th>
+            <th>Customer_Region</th>
+            <th>Customer_Marital_status</th>
+            </tr>
+         </thead>
+
+         {% for result in results %}
+            <tr>
+               <td>{{result["Policy_id"]}}</td>
+               <td>{{result["DateofPurchase"]}}</td>
+               <td>{{result["Customer_id"]}}</td>
+               <td>{{result['Fuel']}}</td>
+               <td>{{result['VEHICLE_SEGMENT']}}</td>
+               <td>{{result['Premium']}}</td>
+               <td>{{result["bodilyinjuryliability"]}}</td>
+               <td>{{result["personalinjuryprotection"]}}</td>
+               <td>{{result["propertydamageliability"]}}</td>
+               <td>{{result['collision']}}</td>
+               <td>{{result['comprehensive']}}</td>
+               <td>{{result['Customer_Gender']}}</td>
+               <td>{{result['Customer_Incomegroup']}}</td>
+               <td>{{result['Customer_Region']}}</td>
+               <td>{{result['Customer_Marital_status']}}</td>
+               <td align="center"><a href = "{{ url_for('sql_editlink', ePolicy_id=result['Policy_id']) }}"><i class="fas fa-edit"></a></td>
+               <td align="center"><a href = "{{ url_for('sql_datadelete', Policy_id=result['Policy_id']) }}"><i class="fas fa-trash-alt"></a></td>
+            </tr>
+         {% endfor %}
+      </table>
+
+    </body>
+</html>

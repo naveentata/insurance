@@ -12,21 +12,51 @@ def sql_database():
     msg = 'SELECT * FROM data'
     return render_template('sqldatabase.html', results=results, msg=msg)
 
+@app.route('/graph') 
+def sql_graph():
+    from functions.sqlquery import sql_query
+    results = sql_query(''' SELECT DateofPurchase  FROM data''')
+    msg = 'SELECT DateofPurchase FROM data'
+    sample = []
+    for ele in results:
+        sample.append(ele['DateofPurchase'])
 
-@app.route('/insert',methods = ['POST', 'GET']) #this is when user submits an insert
-def sql_datainsert():
-    from functions.sqlquery import sql_edit_insert, sql_query
-    if request.method == 'POST':
-        last_name = request.form['last_name']
-        first_name = request.form['first_name']
-        address = request.form['address']
-        city = request.form['city']
-        state = request.form['state']
-        zip = request.form['zip']
-        sql_edit_insert(''' INSERT INTO data (first_name,last_name,address,city,state,zip) VALUES (?,?,?,?,?,?) ''', (first_name,last_name,address,city,state,zip) )
+    for i in range(0,len(sample)):
+        sample[i]=sample[i].split("/")
+        for j in range(0,len(sample[i])):
+            sample[i][j]=int(sample[i][j])
+    # print(sample)
+    main={}
+    needed=[2018]
+
+    for ele in needed:
+        main[ele]={}
+        for i in range(1,13):
+            main[ele][i]=0
+
+    for ele in sample:
+        if(ele[2] in needed):
+            main[ele[2]][ele[0]]+=1
+    print(main)
+    # keys=["Jan","Feb","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec"]
+    val=[]
+    for i in range(1,13):
+        val.append(main[2018][i])
+    
+
+    return render_template('graph.html', val=val, msg=msg)
+
+@app.route('/search',methods = ['POST', 'GET']) 
+def search_database():
+    from functions.sqlquery import sql_query
     results = sql_query(''' SELECT * FROM data''')
-    msg = 'INSERT INTO data (first_name,last_name,address,city,state,zip) VALUES ('+first_name+','+last_name+','+address+','+city+','+state+','+zip+')'
-    return render_template('sqldatabase.html', results=results, msg=msg) 
+    msg = 'SELECT * FROM data'
+    if request.method== 'POST':
+        search = request.form['search']
+        results = sql_query(''' SELECT * FROM data where Policy_id ='%?%'  ''',(search,))
+    return render_template('searchdatabase.html', results=results, msg=msg)
+
+
 
 
 @app.route('/delete',methods = ['POST', 'GET']) #this is when user clicks delete link
